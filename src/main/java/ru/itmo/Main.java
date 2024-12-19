@@ -27,7 +27,7 @@ public class Main {
         String inputDir = args[0];
         String outputDir = args[1];
         int reducersCount = Integer.parseInt(args[2]);
-        int datablockSizeMb = Integer.parseInt(args[3]) * ((int) Math.pow(2, 23));
+        int datablockSizeMb = Integer.parseInt(args[3]) * ((int) Math.pow(2, 10));
         String intermediateResultDir = outputDir + "-intermediate";
 
         long startTime = System.currentTimeMillis();
