@@ -62,7 +62,7 @@ public class Main {
         intermediateOutput = new Path(intermediateResultDir);
         FileOutputFormat.setOutputPath(salesAnalysisJob, intermediateOutput);
 
-        boolean success = salesAnalysisJob.waitForCompletion(true);
+        boolean success = salesAnalysisJob.waitForCompletion(false);
 
         if (!success) {
             System.exit(1);
@@ -85,6 +85,6 @@ public class Main {
         long endTime = System.currentTimeMillis();
         log.info("Jobs completed in {} milliseconds", (endTime - startTime));
 
-        System.exit(sortByValueJob.waitForCompletion(true) ? 0 : 1);
+        System.exit(sortByValueJob.waitForCompletion(false) ? 0 : 1);
     }
 }
