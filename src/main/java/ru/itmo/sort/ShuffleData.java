@@ -12,7 +12,7 @@ import java.io.IOException;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ValueAsKeyData implements Writable {
+public class ShuffleData implements Writable {
     private String category;
     private int quantity;
 

@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
-public class ValueAsKeyMapper extends Mapper<Object, Text, DoubleWritable, ValueAsKeyData> {
+public class ShuffleMapper extends Mapper<Object, Text, DoubleWritable, ShuffleData> {
     private final DoubleWritable outKey = new DoubleWritable();
 
     @Override
@@ -18,7 +18,7 @@ public class ValueAsKeyMapper extends Mapper<Object, Text, DoubleWritable, Value
             double val = Double.parseDouble(fields[1]);
             int quantity = Integer.parseInt(fields[2]);
             outKey.set(-1 * val);
-            context.write(outKey, new ValueAsKeyData(categoryKey, quantity));
+            context.write(outKey, new ShuffleData(categoryKey, quantity));
         }
     }
 }

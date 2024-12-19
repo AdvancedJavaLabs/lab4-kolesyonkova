@@ -12,9 +12,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import ru.itmo.map.SaleInfo;
 import ru.itmo.map.SaleMapper;
 import ru.itmo.map.SaleReducer;
-import ru.itmo.sort.ValueAsKeyData;
-import ru.itmo.sort.ValueAsKeyMapper;
-import ru.itmo.sort.ValueAsKeyReducer;
+import ru.itmo.sort.ShuffleData;
+import ru.itmo.sort.ShuffleMapper;
+import ru.itmo.sort.ShuffleReducer;
 
 @Slf4j
 public class Main {
@@ -70,13 +70,13 @@ public class Main {
 
         Job sortByValueJob = Job.getInstance(conf, "sorting by prize");
         sortByValueJob.setJarByClass(Main.class);
-        sortByValueJob.setMapperClass(ValueAsKeyMapper.class);
-        sortByValueJob.setReducerClass(ValueAsKeyReducer.class);
+        sortByValueJob.setMapperClass(ShuffleMapper.class);
+        sortByValueJob.setReducerClass(ShuffleReducer.class);
 
         sortByValueJob.setMapOutputKeyClass(DoubleWritable.class);
-        sortByValueJob.setMapOutputValueClass(ValueAsKeyData.class);
+        sortByValueJob.setMapOutputValueClass(ShuffleData.class);
 
-        sortByValueJob.setOutputKeyClass(ValueAsKeyData.class);
+        sortByValueJob.setOutputKeyClass(ShuffleData.class);
         sortByValueJob.setOutputValueClass(Text.class);
 
         FileInputFormat.addInputPath(sortByValueJob, intermediateOutput);
